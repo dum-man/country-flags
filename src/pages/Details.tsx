@@ -1,8 +1,8 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../hooks/hooks';
-import { IoArrowBack } from 'react-icons/io5';
-import { Button } from '../components/Button';
-import styled from 'styled-components';
+import { useParams, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { IoArrowBack } from "react-icons/io5";
+import { useAppSelector } from "../hooks/hooks";
+import { Button } from "../components/Button";
 
 const Wrapper = styled.section`
   margin-top: 3rem;
@@ -10,7 +10,7 @@ const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 100%;
   gap: 2rem;
-  
+
   @media (min-width: 1024px) {
     grid-template-columns: minmax(400px, 600px) 1fr;
   }
@@ -85,19 +85,20 @@ const Tag = styled.span`
   box-shadow: var(--shadow);
   line-height: 1.5;
   cursor: pointer;
-  border-radius: var(--radii)
+  border-radius: var(--radii);
 `;
 
 export const Details: React.FC = () => {
-
   const { name } = useParams();
 
-  const navigate = useNavigate()
-  const goBack = () => navigate(-1)
+  const navigate = useNavigate();
+  const goBack = () => navigate(-1);
 
-  const country = useAppSelector(state => state.countries.countries.find(country => country.alpha3Code === name))
+  const country = useAppSelector((state) =>
+    state.countries.countries.find((country) => country.alpha3Code === name)
+  );
 
-  const borders = country?.borders
+  const borders = country?.borders;
 
   return (
     <div>
@@ -139,7 +140,9 @@ export const Details: React.FC = () => {
               <ListItem>
                 <b>Currency: </b>
                 {country?.currencies.map((c) => (
-                  <span key={c.code}>{c.name} {c.code} {c.symbol}</span>
+                  <span key={c.code}>
+                    {c.name} {c.code} {c.symbol}
+                  </span>
                 ))}
               </ListItem>
               <ListItem>
@@ -149,7 +152,7 @@ export const Details: React.FC = () => {
                 ))}
               </ListItem>
               <ListItem>
-                <b>Independent: </b> {country?.independent ? 'Yes' : 'No'}
+                <b>Independent: </b> {country?.independent ? "Yes" : "No"}
               </ListItem>
             </List>
           </ListGroup>
@@ -170,5 +173,5 @@ export const Details: React.FC = () => {
         </div>
       </Wrapper>
     </div>
-  )
-}
+  );
+};

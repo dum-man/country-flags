@@ -1,25 +1,25 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type FilterType = {
-  sort: string,
-  search: string
-}
+  sort: string;
+  search: string;
+};
 
 const initialState: FilterType = {
-  sort: '',
-  search: ''
+  sort: "",
+  search: "",
 };
 
 const filterSlice = createSlice({
-  name: 'filter',
+  name: "filter",
   initialState,
   reducers: {
     changeSort(state, action: PayloadAction<string>) {
-      state.sort = action.payload
+      state.sort = action.payload;
     },
     changeSearch(state, action: PayloadAction<string>) {
-      state.search = action.payload
-    }
+      state.search = action.payload;
+    },
   },
 });
 

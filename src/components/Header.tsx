@@ -1,9 +1,8 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { IoMoon, IoMoonOutline } from 'react-icons/io5';
-import { Container } from './Container';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { IoMoon, IoMoonOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import { Container } from "./Container";
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -18,7 +17,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled(Link).attrs({
-  to: '/',
+  to: "/",
 })`
   color: var(--colors-text);
   font-size: var(--fs-md);
@@ -38,12 +37,12 @@ const ModeSwitcher = styled.div`
 `;
 
 export const Header: React.FC = React.memo(() => {
-  const [mode, setMode] = useState('light');
+  const [mode, setMode] = useState("light");
 
-  const toggleMode = () => setMode(mode === 'light' ? 'dark' : 'light');
+  const toggleMode = () => setMode(mode === "light" ? "dark" : "light");
 
   useEffect(() => {
-    document.body.setAttribute('data-theme', mode);
+    document.body.setAttribute("data-theme", mode);
   }, [mode]);
 
   return (
@@ -52,14 +51,10 @@ export const Header: React.FC = React.memo(() => {
         <Wrapper>
           <Title>Where is the world?</Title>
           <ModeSwitcher onClick={toggleMode}>
-            <div style={{ display: 'inline-block', position: 'relative', top: '5px' }}>
-              {mode === 'light' ? (
-                <IoMoonOutline size="20px" />
-              ) : (
-                <IoMoon size="20px" />
-              )}
+            <div style={{ display: "inline-block", position: "relative", top: "5px" }}>
+              {mode === "light" ? <IoMoonOutline size="20px" /> : <IoMoon size="20px" />}
             </div>
-            <span style={{ marginLeft: '0.75rem' }}>{mode} Mode</span>
+            <span style={{ marginLeft: "0.75rem" }}>{mode} Mode</span>
           </ModeSwitcher>
         </Wrapper>
       </Container>

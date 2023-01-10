@@ -1,8 +1,8 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { Card } from './Card';
-import { CountriesType } from '../types/Types';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { Card } from "./Card";
+import { CountriesType } from "../types/types";
 
 const Wrapper = styled.section`
   width: 100%;
@@ -22,13 +22,10 @@ const Wrapper = styled.section`
 `;
 
 export const List: React.FC<CountriesType> = ({ countries }) => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   if (!countries.length) {
-    return (
-      <h1>Country not found</h1>
-    )
+    return <h1>Country not found</h1>;
   }
 
   return (
@@ -39,15 +36,15 @@ export const List: React.FC<CountriesType> = ({ countries }) => {
           name: c.name,
           info: [
             {
-              title: 'Population',
+              title: "Population",
               description: c.population.toLocaleString(),
             },
             {
-              title: 'Region',
+              title: "Region",
               description: c.region,
             },
             {
-              title: 'Capital',
+              title: "Capital",
               description: c.capital,
             },
           ],
@@ -56,11 +53,13 @@ export const List: React.FC<CountriesType> = ({ countries }) => {
         return (
           <Card
             key={c.name}
-            onClick={() => { navigate(`/country/${c.alpha3Code}`) }}
+            onClick={() => {
+              navigate(`/country/${c.alpha3Code}`);
+            }}
             {...countryInfo}
           />
         );
       })}
     </Wrapper>
-  )
+  );
 };

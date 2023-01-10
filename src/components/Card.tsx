@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Wrapper = styled.article`
   border-radius: var(--radii);
@@ -22,7 +22,6 @@ const CardImage = styled.img`
   @media (min-width: 1024px) {
     height: 150px;
   }
-  
 `;
 
 const CardBody = styled.div`
@@ -51,31 +50,33 @@ const CardListItem = styled.li`
   }
 `;
 type Info = {
-  title: string,
-  description: string | number
-}
+  title: string;
+  description: string | number;
+};
 
 type CardType = {
-  img: string,
-  name: string,
-  info: Info[],
-  onClick: () => void
-}
+  img: string;
+  name: string;
+  info: Info[];
+  onClick: () => void;
+};
 
-export const Card: React.FC<CardType> = React.memo(({ img, name, info = [], onClick }) => {
-  return (
-    <Wrapper onClick={onClick}>
-      <CardImage src={img} alt={name} />
-      <CardBody>
-        <CardTitle>{name}</CardTitle>
-        <CardList>
-          {info.map((el) => (
-            <CardListItem key={el.title}>
-              <b>{el.title}:</b> {el.description}
-            </CardListItem>
-          ))}
-        </CardList>
-      </CardBody>
-    </Wrapper>
-  );
-});
+export const Card: React.FC<CardType> = React.memo(
+  ({ img, name, info = [], onClick }) => {
+    return (
+      <Wrapper onClick={onClick}>
+        <CardImage src={img} alt={name} />
+        <CardBody>
+          <CardTitle>{name}</CardTitle>
+          <CardList>
+            {info.map((el) => (
+              <CardListItem key={el.title}>
+                <b>{el.title}:</b> {el.description}
+              </CardListItem>
+            ))}
+          </CardList>
+        </CardBody>
+      </Wrapper>
+    );
+  }
+);

@@ -1,12 +1,11 @@
-import { Routes, Route } from 'react-router-dom';
-import { Header } from './components/Header';
-import { Main } from './components/Main';
-import { HomePage } from './pages/HomePage';
-import { Details } from './pages/Details';
-import { NotFound } from './pages/NotFound';
+import { Routes, Route } from "react-router-dom";
+import { Header } from "./components/Header";
+import { Main } from "./components/Main";
+import { HomePage } from "./pages/HomePage";
+import { Details } from "./pages/Details";
+import { NotFound } from "./pages/NotFound";
 
 const App: React.FC = () => {
-
   return (
     <>
       <Header />
@@ -19,6 +18,6 @@ const App: React.FC = () => {
       </Main>
     </>
   );
-}
+};
 
 export default App;

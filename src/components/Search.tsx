@@ -1,10 +1,10 @@
-import React from 'react';
-import { ChangeEvent, useEffect } from 'react';
-import styled from 'styled-components';
-import { IoSearch } from 'react-icons/io5';
-import { changeSearch } from '../App/filter/filterSlice';
-import { useDebounce } from '../utils/useDebounce';
-import { useAppDispatch } from '../hooks/hooks';
+import React from "react";
+import { useEffect } from "react";
+import styled from "styled-components";
+import { IoSearch } from "react-icons/io5";
+import { changeSearch } from "../App/filter/filterSlice";
+import { useDebounce } from "../utils/useDebounce";
+import { useAppDispatch } from "../hooks/hooks";
 
 const InputContainer = styled.label`
   background-color: var(--colors-ui-base);
@@ -23,8 +23,8 @@ const InputContainer = styled.label`
 `;
 
 const Input = styled.input.attrs({
-  type: 'search',
-  placeholder: 'Search for a country...',
+  type: "search",
+  placeholder: "Search for a country...",
 })`
   margin-left: 2rem;
   border: none;
@@ -34,36 +34,37 @@ const Input = styled.input.attrs({
 `;
 
 type PropsType = {
-  searchQuery: string,
-  setSearchQuery: (arg: string) => void,
-  params: any
-}
+  searchQuery: string;
+  setSearchQuery: (arg: string) => void;
+  params: any;
+};
 
-export const Search: React.FC<PropsType> = React.memo(({ searchQuery, setSearchQuery, params }) => {
+export const Search: React.FC<PropsType> = React.memo(
+  ({ searchQuery, setSearchQuery, params }) => {
+    const dispatch = useAppDispatch();
 
-  const dispatch = useAppDispatch()
+    const handleSearchQuery = (evt: React.ChangeEvent<HTMLInputElement>) =>
+      setSearchQuery(evt.target.value);
 
-  const handleSearchQuery = (evt: ChangeEvent<HTMLInputElement>) => setSearchQuery(evt.target.value)
+    const setSearch = useDebounce(() => {
+      dispatch(changeSearch(searchQuery));
+    }, 500);
 
-  const setSearch = useDebounce(() => {
-    dispatch(changeSearch(searchQuery))
-  }, 500)
+    useEffect(() => {
+      setSearch();
+      if (searchQuery) {
+        params.current.search = searchQuery;
+      } else {
+        // @ts-ignore
+        delete params.current.search;
+      }
+    }, [dispatch, searchQuery]);
 
-  useEffect(() => {
-    setSearch()
-    if (searchQuery) {
-      params.current.search = searchQuery
-    } else {
-      // @ts-ignore
-      delete params.current.search
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, searchQuery])
-
-  return (
-    <InputContainer>
-      <IoSearch />
-      <Input onChange={handleSearchQuery} value={searchQuery} />
-    </InputContainer>
-  );
-});
+    return (
+      <InputContainer>
+        <IoSearch />
+        <Input onChange={handleSearchQuery} value={searchQuery} />
+      </InputContainer>
+    );
+  }
+);

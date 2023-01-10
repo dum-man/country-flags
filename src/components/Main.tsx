@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Container } from './Container';
+import styled from "styled-components";
+import { Container } from "./Container";
 
 const Wrapper = styled.main`
   padding: 2rem 0 4rem 0;
@@ -9,8 +9,8 @@ const Wrapper = styled.main`
 `;
 
 type PropsType = {
-  children: JSX.Element
-}
+  children: JSX.Element;
+};
 
 export const Main: React.FC<PropsType> = ({ children }) => {
   return (
