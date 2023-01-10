@@ -5,10 +5,10 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import axios from "axios";
-import { CountryType } from "../types/types";
+import { Country } from "../types";
 
 type StateType = {
-  countries: CountryType[];
+  countries: Country[];
   status: string;
   error: string;
 };
@@ -22,7 +22,7 @@ const initialState: StateType = {
 const BASE_URL = "https://restcountries.com/v2/";
 
 export const fetchCountries = createAsyncThunk<
-  CountryType[],
+  Country[],
   undefined,
   { rejectValue: string }
 >("countries/fetchCountries", async (_, { rejectWithValue }) => {

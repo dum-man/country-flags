@@ -11,7 +11,7 @@ type Language = {
   nativeName: string;
 };
 
-export type CountryType = {
+export type Country = {
   alpha3Code: string;
   borders: string[];
   capital: string;
@@ -29,5 +29,5 @@ export type CountryType = {
 };
 
 export type CountriesType = {
-  countries: CountryType[];
+  countries: Country[];
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Card } from "./Card";
-import { CountriesType } from "../types/types";
+import { CountriesType } from "../types";
 
 const Wrapper = styled.section`
   width: 100%;
